@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Planner</title>
+</head>
+<body>
+    <header>
+        <h1>Pro Planner</h1>
+    </header>
+    <div class="app-container">
+        <div class="sidebar">
+            <button class="inbox">Inbox</button>
+            <button class="today">Today</button>
+            <button class="important">Important</button>
+            <button class="completed">Completed</button>
+            <button class="projects">Projects</button>
+        </div>
+        <div class="main">
+
+            <dialog class="taskForm" open>
+                <form action="" method="dialog">
+                    <div class="form-row">
+                        <label for="title">Title</label>
+                        <input type="text" id="title">
+                    </div>
+                    <div class="form-row">
+                        <label for="descrtiption">Description</label>
+                        <textarea name="description" id="description" placeholder="Write your tasks"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <label for="dueDate">Due Date</label>
+                        <input type="date" name="dueDate" id="dueDate">
+                    </div>
+                    <div class="form-row">
+                        <label for="taskCompleted">Completed</label>
+                        <input type="checkbox" name="taskCompleted" id="completed">
+                    </div>
+                </form>
+            </dialog>
+
+            <button class="addTask">+</button>
+        </div>
+    </div>
+   
+    <footer>
+        <p>Pro Planner made by <a href="https://github.com/BelhassenB">Kalmist</a></p>
+    </footer>
+
+</body>
+</html>
