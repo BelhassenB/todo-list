@@ -32,7 +32,7 @@ function createProjectForm() {
     
     projectForm.append(projectNameInput, submitProjectName, closeFormbtn)
     projectDialog.append(projectForm)
-    projectsContainer.append(projectForm)
+    projectsContainer.append(projectDialog)
 
     projectDialog.show()
     
