@@ -1,7 +1,8 @@
-import { toDo, main } from "./userInterface";
+import { toDo, main, createTaskContainer } from "./userInterface";
 const displayProjectFormbtn = document.querySelector('.displayProjectForm') 
 const projectsContainer = document.querySelector('.projects-container')
 const projectTarget = document.querySelector('.projects-container') // to use event delegation
+
 
 function createProjectForm() {   
     const projectDialog = document.createElement('dialog')
@@ -57,22 +58,29 @@ export function submitNewProject() {
             toDo.createProject(inputValue.value)                     
             selectForm.reset()
             selectDialog.close()
-            displayProjectsOnDOM()
+            displayProjectNameOnDOM()
 
         } else if (btnTarget.className === "closeForm") {
             selectDialog.close()    
-        }        
+        }
         
     })
 }
-function displayProjectsOnDOM() {
+function displayProjectNameOnDOM() {
     let listOfProjects = toDo.projects
+
     for (let i=0; i<listOfProjects.length; i++) {
         const projectDiv = document.createElement('div')
+        projectsContainer.append(projectDiv)
         projectDiv.textContent = listOfProjects[i].name
         projectDiv.dataset.projectref = listOfProjects.indexOf(listOfProjects[i])
         projectDiv.style.marginBottom = "20px"
-        projectsContainer.appendChild(projectDiv)
+        projectsContainer.appendChild(projectDiv)        
         
+        // display project details on DOM
+        projectDiv.addEventListener("click", () => {
+            createTaskContainer(listOfProjects[0]['task'])
+        })
     }
+    
 }
