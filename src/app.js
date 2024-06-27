@@ -1,23 +1,29 @@
+import { description, dueDate, priority } from "./userInterface"
+
 export function projectsManagement() {
-    const inbox = []
-    const projects = []    
+    const inbox = [{title:"Study",
+        description: "learn JS",
+        dueDate: "",
+        priority: "low"}]
+
+    const projects = []  
 
     const createProject = (name) => {
         const newProject = {
-            name,
+            name,  
+            task: []  
         }
         projects.push(newProject)
         
         return newProject
     }
 
-    function createTask(title, description, dueDate, priority) {
+    const createTask = (title, description, dueDate, priority) => {
         const newTask = {
             title,
             description,
             dueDate,
-            priority, 
-            isComplete: false
+            priority,
         }       
                
         inbox.push(newTask)     
@@ -25,19 +31,24 @@ export function projectsManagement() {
     }   
     
     const editTask = 
-    (index, key, newvalue) => inbox[index][key] = newvalue     
+    (index, newTitle, newDescritpion, newDueDate, newPriority) => {
+        inbox[index].title = newTitle
+        inbox[index].description = newDescritpion
+        inbox[index].dueDate = newDueDate
+        inbox[index].priority = newPriority
+
+    }  
 
     const deleteTask = 
     (taskIndex, nbrOfTasksToRemove = 1 ) => inbox.splice(taskIndex, nbrOfTasksToRemove)
 
-    const deleteAllTasks = 
-    () => inbox.splice(0) 
-
+    // const deleteAllTasks = 
+    // () => inbox.splice(0) 
     
-    const moveTask = (startIndex, endIndex, targetProject) => {
+    const moveTask = (startIndex, targetProject, endIndex = startIndex + 1) => {
+        
         const taskToMove = inbox.slice(startIndex, endIndex)
-        deleteTask(startIndex, endIndex )
-        projects[targetProject].task = taskToMove              
+        projects[targetProject].task = taskToMove       
         
     }
     
@@ -46,11 +57,7 @@ export function projectsManagement() {
             editTask,
             createProject,
             moveTask,
-            deleteAllTasks,
             inbox,
             projects
         }
 }
-//tasks examples
-const grocery = toDo.createTask("Grocery", "buy milk", "tonight", "high")
-const play = toDo.createTask("Games", "play gta20 and fifa2050", "tonight", "high")
