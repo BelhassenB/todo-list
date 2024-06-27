@@ -37,9 +37,74 @@ header {
     gap: 1rem 0px;
     padding: 2rem 0 0 2rem;
 
-       
 }
-.sidebar button {
+.dialog-display[open] {
+    border: none;
+    width: 300px;
+   
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    position: absolute;
+    top: 40%;    
+    & form.project-form {
+        flex: 1 1 auto;
+        display: flex;
+        flex-wrap: wrap;
+        width: 300px;
+        height: auto;
+        gap: 20px;
+        justify-content: space-evenly;
+        & input {
+            width: 100%;
+            height: 30px;
+            font-weight: bold;
+        }   
+        & button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--main-bgcolor);
+            background-color: var(--second-color);
+            border-radius: 30px;
+            flex: 1 1 auto;
+            cursor: pointer;
+        }     
+    }
+}
+.projects-container {
+    width: max-content;
+    margin-left: 10px;
+    color: var(--second-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    & div:hover{
+        cursor: pointer;
+        
+    }
+}
+.moveTask-dialog[open] {
+    position: absolute;
+    width: 450px;
+    text-align: center;
+    top: 40%;
+    margin: 0 auto;
+    border: 1px solid var(--second-color);
+    display: flex;
+    flex-wrap: wrap;
+    & .moveBtn {
+        padding: 10px 20px;
+        width: fit-content;
+        color: var(--main-bgcolor);
+        background-color: var(--second-color);
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+}
+
+.sidebar > button,
+.addProject > button {
     flex-grow: 0; 
     flex-shrink: 1;
     width: fit-content;
@@ -51,11 +116,13 @@ header {
     font-weight: bold;
     cursor: pointer;
 }
-.sidebar button:hover,
-.addTask:hover {
+.sidebar > button:hover,
+.sidebar > button:focus,
+.addTask:hover,
+.addProject > button:hover {
     color: var(--second-color);
 }
-.addProjectBtn {
+.displayProjectForm {
     margin-left: 40px;
    
 }
