@@ -11,6 +11,7 @@ export const description = document.querySelector('#description')
 export const dueDate= document.querySelector('#dueDate')
 export const priority = document.querySelector('#priority')
 export const form = document.querySelector('form')
+const inboxBtn = document.querySelector('.inbox')
 const addTaskBtn = document.querySelector('.addTask')
 
 
@@ -30,17 +31,17 @@ export function createNewTask() {
 export function displayTaskOnClick() {   
     submitFormBtn.addEventListener("click", () => {
         createNewTask()
-        // main.replaceChildren() // emtpy the main div to avoid duplicate
         createTaskContainer(toDo.inbox)
-
+        
     })
 }
 export function createTaskContainer(taskToDisplay) {
-        main.replaceChildren()
+    main.replaceChildren() // emtpy the main div to avoid duplicate
     for (let i=0; i<taskToDisplay.length; i++) {
+        
         const newContainer = document.createElement('div')
-        newContainer.dataset.taskref = (toDo.inbox).indexOf(taskToDisplay[i])      
-       
+        newContainer.dataset.taskref = (toDo.inbox).indexOf(taskToDisplay[i]) 
+
         main.append(newContainer) 
 
         for (const property in taskToDisplay[i]) {
@@ -70,7 +71,9 @@ export function createTaskContainer(taskToDisplay) {
         deleteSvg.classList.add('delete-svg')
 
         iconsDiv.append(editSvg, moveSvg, deleteSvg)
+
     }
+   
 }
 export function getTaskValues() {
     return {
@@ -80,4 +83,9 @@ export function getTaskValues() {
         priority,
         form
     }
+}
+export function displayInobxTasksOnClick() {
+    inboxBtn.addEventListener("click", () => {
+        createTaskContainer(toDo.inbox)
+    })
 }
