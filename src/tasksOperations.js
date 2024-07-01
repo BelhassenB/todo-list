@@ -1,4 +1,3 @@
-import { projectsManagement } from "./app";
 import { main, toDo, submitFormBtn ,dialog, getTaskValues, createTaskContainer } from "./userInterface";
 
 
@@ -6,32 +5,32 @@ const submitEditForm = document.querySelector('.submitEditTask')
 
 export function manageTask() {   
     
-   main.addEventListener("click", (e) => {       
+   main.addEventListener("click", (e) => {    
+    console.log(toDo.projects)
+    console.log(toDo.inbox)      
     const element = e.target 
-    const svgContainer = e.target.parentElement // get the parent element of svgs
+    const svgContainer = element.parentElement // get the parent element of svgs
     const taskContainer = svgContainer.parentElement // get taskref of the container
-    const taskContainerRef =  taskContainer.dataset.taskref    
-    const taskToEdit = toDo.inbox[taskContainerRef]   
-    
+    const taskContainerRef =  taskContainer.dataset.taskref
+    const taskToEdit = toDo.inbox[taskContainerRef]       
 
     if (element.className === 'delete-svg') {
         toDo.deleteTask(taskContainerRef)
-        removeTaskFromDOM(taskContainer)
+        createTaskContainer(toDo.inbox)
+        
+        
     } else if (element.className === 'edit-svg') {
         displayFormToEditTask(taskToEdit)
         showEditBtnOnForm()
-        saveEditedTask(taskContainerRef)       
+        saveEditedTask(taskContainerRef)  
+           
   
-    } else console.log(toDo.inbox)
+    } else if (element.className === 'move-svg') {      
+        displayMoveTaskForm(taskContainerRef) 
+        
+    } 
    })
 }
-
-function removeTaskFromDOM(taskToRemove) {
-    main.removeChild(taskToRemove)
-    createTaskContainer(toDo.inbox) // to reset to tak ref according to inbox positions
-
-}
-
 // display form to edit task and popualte it with
 // values  of the task details
 function displayFormToEditTask(selectedTask) {
@@ -52,8 +51,7 @@ function hideEditBtnOnForm() {
     submitEditForm.replaceWith(submitFormBtn)
 }
 
-function saveEditedTask(selectedTask) {
-    
+function saveEditedTask(selectedTask) {    
     submitEditForm.addEventListener("click", () => {
         toDo.editTask(selectedTask,
             title.value,
@@ -66,4 +64,51 @@ function saveEditedTask(selectedTask) {
         dialog.close()
 
     })
+}
+function displayMoveTaskForm(getTaskRef) {
+    const moveTaskDialog = document.createElement('dialog')
+    moveTaskDialog.classList.add('moveTask-dialog')
+
+    const moveTaskForm = document.createElement('form')
+    moveTaskForm.method = 'dialog'
+
+    const inputLabel = document.createElement('label')
+    inputLabel.textContent = "Move task to this project: "
+    
+    const moveTaskBtn = document.createElement('button')
+    moveTaskBtn.textContent = "Save"
+    moveTaskBtn.classList.add('moveBtn')    
+    
+    const projectOptions = document.createElement('select')
+   
+    const defaultOption = document.createElement('option')
+    defaultOption.value = "Please Choose a Project"
+    defaultOption.textContent = defaultOption.value
+    projectOptions.append(defaultOption)
+
+    for (let i=0; i<toDo.projects.length; i++) {
+        const createOption = document.createElement('option')
+        createOption.value = toDo.projects[i].name
+        createOption.textContent = createOption.value
+        createOption.dataset.optionref = toDo.projects.indexOf(toDo.projects[i])
+        projectOptions.append(createOption)
+    }
+    moveTaskForm.append(inputLabel, projectOptions, moveTaskBtn)
+    moveTaskDialog.append(moveTaskForm)
+    main.append(moveTaskDialog)
+
+    moveTaskDialog.showModal()
+
+     
+    moveTaskBtn.addEventListener("click", () => {
+        // e.preventDefault()
+        const dropdownelement = document.querySelector('select')
+        const getOptionInDropdown = dropdownelement[dropdownelement.selectedIndex]
+        const getOptionIndex = getOptionInDropdown.dataset.optionref
+        toDo.moveTask(getTaskRef, getOptionIndex)
+        toDo.deleteTask(getTaskRef)
+        createTaskContainer(toDo.inbox)
+        
+    })
+
 }

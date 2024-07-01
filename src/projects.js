@@ -3,7 +3,6 @@ const displayProjectFormbtn = document.querySelector('.displayProjectForm')
 const projectsContainer = document.querySelector('.projects-container')
 const projectTarget = document.querySelector('.projects-container') // to use event delegation
 
-
 function createProjectForm() {   
     const projectDialog = document.createElement('dialog')
     projectDialog.classList.add('dialog-display')  
@@ -54,32 +53,49 @@ export function submitNewProject() {
         const selectDialog = document.querySelector('.dialog-display')         
         const selectForm = document.querySelector('.project-form')
         const inputValue = document.querySelector('#projectName')
+        // get the corresponding attribute of the project div
+        const projectIndex = btnTarget.parentElement.dataset.projectref 
         if (btnTarget.className === "submitProject") {         
             toDo.createProject(inputValue.value)                     
             selectForm.reset()
             selectDialog.close()
             displayProjectNameOnDOM()
+            
 
         } else if (btnTarget.className === "closeForm") {
             selectDialog.close()    
+        } else if (btnTarget.className === "removeProject-svg") {            
+            toDo.deleteProject(projectIndex)
+            displayProjectNameOnDOM()
+        } else if (btnTarget.className === "project-title") {
+            createTaskContainer(toDo.projects[projectIndex]['task'])
         }
         
     })
 }
-function displayProjectNameOnDOM() {
-    let listOfProjects = toDo.projects
+export function displayProjectNameOnDOM() {
+    projectsContainer.replaceChildren()
 
-    for (let i=0; i<listOfProjects.length; i++) {
+    for (let i=0; i<toDo.projects.length; i++) {
         const projectDiv = document.createElement('div')
+        const projectTitle = document.createElement('div')
+        projectTitle.classList.add('project-title')
+        const deleteProject = document.createElement('div')
+        deleteProject.classList.add('removeProject-svg')   
+
+        projectDiv.append(projectTitle, deleteProject)
         projectsContainer.append(projectDiv)
-        projectDiv.textContent = listOfProjects[i].name
-        projectDiv.dataset.projectref = listOfProjects.indexOf(listOfProjects[i])
+
+        projectTitle.textContent = toDo.projects[i].name
+        projectDiv.dataset.projectref = toDo.projects.indexOf(toDo.projects[i])
         projectDiv.style.marginBottom = "20px"
         projectsContainer.appendChild(projectDiv)        
         
         // display project details on DOM
-        projectDiv.addEventListener("click", () => {
-            createTaskContainer(listOfProjects[0]['task'])
+        projectTitle.addEventListener("click", () => {
+
+           createTaskContainer(toDo.projects[i]['task'])           
+            
         })
     }
     

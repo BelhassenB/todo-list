@@ -1,11 +1,7 @@
-import { description, dueDate, priority } from "./userInterface"
+// import { description, dueDate, priority } from "./userInterface"
 
 export function projectsManagement() {
-    const inbox = [{title:"Study",
-        description: "learn JS",
-        dueDate: "",
-        priority: "low"}]
-
+    const inbox = []
     const projects = []  
 
     const createProject = (name) => {
@@ -42,6 +38,9 @@ export function projectsManagement() {
     const deleteTask = 
     (taskIndex, nbrOfTasksToRemove = 1 ) => inbox.splice(taskIndex, nbrOfTasksToRemove)
 
+    const deleteProject = 
+    (projectIndex, nbrOfProjectsToRemove = 1 ) => projects.splice(projectIndex, nbrOfProjectsToRemove)
+
     // const deleteAllTasks = 
     // () => inbox.splice(0) 
     
@@ -57,6 +56,7 @@ export function projectsManagement() {
             editTask,
             createProject,
             moveTask,
+            deleteProject,
             inbox,
             projects
         }
