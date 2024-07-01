@@ -28,7 +28,6 @@ export function displayTaskForm() {
 }
 export function createNewTask() {
     toDo.createTask(title.value, description.value, dueDate.value, priority.value)
-    console.log(new Date(dueDate.value))
     form.reset()
 }
 export function displayTaskOnClick() {   
