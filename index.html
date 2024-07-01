@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Planner</title>
+</head>
+<body>
+    <header>
+        <h1>Pro Planner</h1>
+    </header>
+    <div class="app-container">
+        <div class="sidebar">
+            <button class="inbox">Inbox</button>
+            <button class="today">Today</button>
+            <button class="important">Important</button>
+            <button class="completed">Completed</button>
+            <div class="addProject">
+                <button class="projects">Projects</button>
+                <button class="displayProjectForm">+</button>
+            </div>
+            <div class="projects-container">
+                
+            </div>
+        </div>
+        <div class="main">
+
+        
+        </div>
+        <button class="addTask">+</button>
+    </div>
+    <dialog class="taskForm">
+        <form action="" method="dialog">
+            <div class="form-row">
+                <label for="title">Title</label>
+                <input type="text" id="title" autofocus>
+            </div>
+            <div class="form-row">
+                <label for="descrtiption">Description</label>
+                <textarea name="description" id="description" placeholder="eg: I will study javascript"></textarea>
+            </div>
+            <div class="form-row">
+                <label for="dueDate">Due Date</label>
+                <input type="date" name="dueDate" id="dueDate">
+            </div>
+            <div class='form-row'>
+                <label for='priority'>Priority</label>
+                <select id='priority' name='priority'>
+                  <option value='low'>Low</option>
+                  <option value='medium'>Medium</option>
+                  <option value='high'>High</option>
+                </select>
+              </div>
+            <div class="form-row submit-edit-btns">
+                <button type="submit" class="submit">Submit</button>
+                <button type="submit" class="submitEditTask" hidden>Edit</button>
+            </div>                    
+        </form>
+    </dialog>
+   
+    <footer>
+        <p>Pro Planner made by <a href="https://github.com/BelhassenB" target="_blank">Kalmist</a></p>
+    </footer>
+
+<script defer src="main.js"></script></body>
+</html>
