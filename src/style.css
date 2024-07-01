@@ -82,7 +82,22 @@ header {
         cursor: pointer;
         
     }
+    & > div {
+        display: flex;
+        flex-wrap: wrap;
+        width: 10rem;
+        justify-content: space-between;
+        align-items: end;
+        & .removeProject-svg {
+            background-image: url(./img/delete-task.svg);
+            width: 25px;
+            height: 25px;
+            
+            
+        }
+    }
 }
+
 .moveTask-dialog[open] {
     position: absolute;
     width: 450px;
@@ -152,7 +167,8 @@ header {
 /* change svg color using this url: 
 https://codepen.io/sosuke/pen/Pjoqqp */
 
-div.svgDiv {
+div.svgDiv, 
+.removeProject-svg {
     filter: invert(80%) sepia(52%) saturate(434%) hue-rotate(347deg) brightness(95%) contrast(92%);
 
 }

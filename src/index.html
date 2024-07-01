@@ -14,38 +14,51 @@
             <button class="inbox">Inbox</button>
             <button class="today">Today</button>
             <button class="important">Important</button>
-            <button class="completed">Completed</button>
-            <button class="projects">Projects</button>
+            <div class="addProject">
+                <button class="projects">Projects</button>
+                <button class="displayProjectForm">+</button>
+            </div>
+            <div class="projects-container">
+                
+            </div>
         </div>
         <div class="main">
 
-            <dialog class="taskForm" open>
-                <form action="" method="dialog">
-                    <div class="form-row">
-                        <label for="title">Title</label>
-                        <input type="text" id="title">
-                    </div>
-                    <div class="form-row">
-                        <label for="descrtiption">Description</label>
-                        <textarea name="description" id="description" placeholder="Write your tasks"></textarea>
-                    </div>
-                    <div class="form-row">
-                        <label for="dueDate">Due Date</label>
-                        <input type="date" name="dueDate" id="dueDate">
-                    </div>
-                    <div class="form-row">
-                        <label for="taskCompleted">Completed</label>
-                        <input type="checkbox" name="taskCompleted" id="completed">
-                    </div>
-                </form>
-            </dialog>
-
-            <button class="addTask">+</button>
+        
         </div>
+        <button class="addTask">+</button>
     </div>
+    <dialog class="taskForm">
+        <form action="" method="dialog">
+            <div class="form-row">
+                <label for="title">Title</label>
+                <input type="text" id="title" autofocus>
+            </div>
+            <div class="form-row">
+                <label for="descrtiption">Description</label>
+                <textarea name="description" id="description" placeholder="eg: I will study javascript"></textarea>
+            </div>
+            <div class="form-row">
+                <label for="dueDate">Due Date</label>
+                <input type="date" name="dueDate" id="dueDate">
+            </div>
+            <div class='form-row'>
+                <label for='priority'>Priority</label>
+                <select id='priority' name='priority'>
+                  <option value='low'>Low</option>
+                  <option value='medium'>Medium</option>
+                  <option value='high'>High</option>
+                </select>
+              </div>
+            <div class="form-row submit-edit-btns">
+                <button type="submit" class="submit">Submit</button>
+                <button type="submit" class="submitEditTask" hidden>Edit</button>
+            </div>                    
+        </form>
+    </dialog>
    
     <footer>
-        <p>Pro Planner made by <a href="https://github.com/BelhassenB">Kalmist</a></p>
+        <p>Pro Planner made by <a href="https://github.com/BelhassenB" target="_blank">Kalmist</a></p>
     </footer>
 
 </body>
