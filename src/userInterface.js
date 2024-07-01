@@ -12,6 +12,8 @@ export const dueDate= document.querySelector('#dueDate')
 export const priority = document.querySelector('#priority')
 export const form = document.querySelector('form')
 const inboxBtn = document.querySelector('.inbox')
+const todayBtn = document.querySelector('.today')
+const importantBtn = document.querySelector('.important')
 const addTaskBtn = document.querySelector('.addTask')
 
 
@@ -26,6 +28,7 @@ export function displayTaskForm() {
 }
 export function createNewTask() {
     toDo.createTask(title.value, description.value, dueDate.value, priority.value)
+    console.log(new Date(dueDate.value))
     form.reset()
 }
 export function displayTaskOnClick() {   
@@ -72,8 +75,8 @@ export function createTaskContainer(taskToDisplay) {
 
         iconsDiv.append(editSvg, moveSvg, deleteSvg)
 
+
     }
-   
 }
 export function getTaskValues() {
     return {
@@ -88,4 +91,31 @@ export function displayInobxTasksOnClick() {
     inboxBtn.addEventListener("click", () => {
         createTaskContainer(toDo.inbox)
     })
+}
+
+export function displayHighPriorityTasks() {
+    
+    importantBtn.addEventListener("click", () => {
+        const importantTasks = toDo.inbox.filter(task =>
+        task.priority === 'high') 
+        createTaskContainer(importantTasks)
+              
+    })
+}
+export function todaytasks() {
+    todayBtn.addEventListener("click", () => {
+        const todaysTasks = toDo.inbox.filter(task => {
+           const date = new Date()
+           const todayDate = new Date(date.getFullYear(),
+            date.getMonth(), date.getDay())
+           const taskDate = new Date(task.dueDate) 
+           
+           return todayDate.getFullYear() === taskDate.getFullYear() &&
+                  todayDate.getMonth() === taskDate.getMonth() &&
+                  todayDate.getDay() === taskDate.getDay()
+                      
+        })
+        createTaskContainer(todaysTasks)
+    })
+    
 }
