@@ -5,9 +5,7 @@ const submitEditForm = document.querySelector('.submitEditTask')
 
 export function manageTask() {   
     
-   main.addEventListener("click", (e) => {    
-    console.log(toDo.projects)
-    console.log(toDo.inbox)      
+   main.addEventListener("click", (e) => {        
     const element = e.target 
     const svgContainer = element.parentElement // get the parent element of svgs
     const taskContainer = svgContainer.parentElement // get taskref of the container
