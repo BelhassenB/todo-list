@@ -12,7 +12,7 @@ Pro Planner is an intuitive to-do list application designed to help you manage y
 
 ## Sample Screenshot
 
-![alt text](image.png)
+![Screenshot](./image.png)
 
 ## Demo
 
